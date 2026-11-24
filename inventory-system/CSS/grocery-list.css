@@ -1,0 +1,51 @@
+/* Grocery list. Colors come from the :root block in index.css.
+   Every rule is scoped to .grocery-page so it can't break the sidebar */
+.grocery-page{max-width:1100px;margin:0 auto;padding-bottom:40px}
+.grocery-page button,.grocery-page input,.grocery-page select{font:inherit;color:inherit}
+.grocery-page .tagline{margin:0 0 14px;font-size:14px;color:var(--muted)}
+
+/* Controls stay on screen while you scroll */
+.grocery-page .controls{position:sticky;top:0;z-index:5;padding:12px 0;background:var(--bg)}
+.grocery-page .add-row,.grocery-page .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.grocery-page .field{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text)}
+.grocery-page .field:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.grocery-page #item-input{flex:1;min-width:180px}
+.grocery-page #search{flex:1;min-width:150px}
+.grocery-page select.field{max-width:190px}
+.grocery-page .btn{padding:10px 16px;border:1px solid transparent;border-radius:8px;background:var(--accent);color:#fff;font-weight:500;cursor:pointer;transition:background .15s}
+.grocery-page .btn:hover{background:var(--accent-hover)}
+.grocery-page .btn.ghost{background:var(--surface);border-color:var(--line);color:var(--muted)}
+.grocery-page .btn.ghost:hover{background:var(--bg);color:var(--text)}
+
+.grocery-page .seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.grocery-page .seg button{padding:9px 14px;border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:14px}
+.grocery-page .seg button.on{background:var(--accent);color:#fff;font-weight:500}
+
+.grocery-page .progress{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.grocery-page #bar{height:100%;width:0;background:var(--accent);transition:width .25s}
+.grocery-page #summary{margin:6px 0 10px;color:var(--muted);font-size:13px}
+
+.grocery-page .chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.grocery-page .chip{flex:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);font-size:13px;cursor:pointer;white-space:nowrap}
+.grocery-page .chip:hover{color:var(--text)}
+.grocery-page .chip.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500}
+
+/* Cards sit side by side, each scrolls on its own */
+.grocery-page .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;align-items:start;margin-top:8px}
+.grocery-page .grid.single{grid-template-columns:minmax(0,640px)}
+/* .card is also used by the dashboard, so reset what it adds there */
+.main-content .grocery-page .card{display:block;min-height:0;padding:0;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:none;overflow:hidden}
+.grocery-page .card-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.grocery-page .card-head h2{font-size:15px;font-weight:600;color:var(--text)}
+.grocery-page .count{color:var(--accent);font-size:12px;font-weight:600}
+.grocery-page .list{max-height:330px;overflow-y:auto}
+.grocery-page .grid.single .list{max-height:none}
+.grocery-page .row{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line)}
+.grocery-page .row:last-child{border-bottom:0}
+.grocery-page .row:hover{background:#F9FAFB}
+.grocery-page .row input{width:17px;height:17px;accent-color:var(--accent);cursor:pointer}
+.grocery-page .name{flex:1;font-size:14px;overflow-wrap:anywhere}
+.grocery-page .row.done .name{color:var(--muted);text-decoration:line-through}
+.grocery-page .del{border:0;background:transparent;color:var(--muted);cursor:pointer;padding:2px 6px;border-radius:4px}
+.grocery-page .del:hover{color:var(--danger);background:var(--danger-soft)}
+.grocery-page .empty{grid-column:1/-1;max-width:none;padding:30px;text-align:center;color:var(--muted)}

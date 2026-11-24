@@ -1,0 +1,72 @@
+/* Items page. Colors come from the :root block in index.css.
+   Everything is scoped to the .items-page wrapper inside .main-content */
+.items-page input,.items-page select,.items-page button{font-family:inherit}
+
+/* Toolbar */
+.items-page .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.items-page .toolbar input,.items-page .toolbar select{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);font-size:14px}
+.items-page .toolbar input{flex:1;min-width:160px}
+.items-page .toolbar input:focus,.items-page .toolbar select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+/* Buttons */
+.items-page .btn{display:inline-block;padding:9px 14px;border:1px solid transparent;border-radius:8px;color:#fff;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;transition:background .15s}
+.items-page .btn-add{background:var(--accent)}
+.items-page .btn-add:hover{background:var(--accent-hover)}
+.items-page .btn-clear{background:var(--surface);border-color:var(--line);color:var(--muted)}
+.items-page .btn-clear:hover{background:var(--bg);color:var(--text)}
+.items-page .btn-edit{background:var(--surface);border-color:var(--line);color:var(--text)}
+.items-page .btn-edit:hover{background:var(--bg)}
+.items-page .btn-del{background:var(--surface);border-color:#F1C5C0;color:var(--danger)}
+.items-page .btn-del:hover{background:var(--danger-soft)}
+.items-page .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Table */
+.items-page .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.items-page table{width:100%;border-collapse:collapse;font-size:14px}
+.items-page th,.items-page td{padding:12px 16px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.items-page th{background:#F9FAFB;color:var(--muted);font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.items-page tbody tr:last-child td{border-bottom:0}
+.items-page tbody tr:hover{background:#F9FAFB}
+.items-page .empty{text-align:center;color:var(--muted);padding:28px}
+.items-page .count{margin:14px 0 0;color:var(--muted);font-size:14px}
+.items-page .error{margin:0 0 14px;padding:10px 14px;max-width:none;color:#7A271A;background:var(--danger-soft);border-left:4px solid var(--danger);border-radius:8px}
+
+/* Edit / Delete side by side */
+.items-page td.actions{white-space:nowrap}
+.items-page td.actions .inline-form{display:inline-block;vertical-align:middle}
+.items-page td.actions .btn{margin-right:6px;padding:6px 12px;font-size:13px;vertical-align:middle}
+.items-page td.actions .inline-form .btn{margin-right:0}
+
+/* Add / Edit dialog (margin:auto is needed because the site-wide reset removes it) */
+#item-dialog{margin:auto;width:min(480px,92vw);padding:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--text);font-family:inherit;box-shadow:0 20px 50px rgba(16,24,40,.25)}
+#item-dialog::backdrop{background:rgba(17,24,39,.5);backdrop-filter:blur(2px)}
+#item-dialog form{padding:24px}
+#item-dialog h2{margin:0 0 20px;font-size:20px;font-weight:600}
+#item-dialog label{display:block;margin-bottom:14px;color:var(--muted);font-size:13px;font-weight:500}
+#item-dialog input{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);font:inherit;font-size:14px}
+#item-dialog input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+/* Category dropdown: same look as the text boxes, with a custom arrow */
+#item-dialog select{display:block;width:100%;margin-top:6px;padding:10px 38px 10px 12px;border:1px solid var(--line);border-radius:8px;background-color:var(--surface);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;color:var(--text);font:inherit;font-size:14px;cursor:pointer;appearance:none;-webkit-appearance:none}
+#item-dialog select:hover{border-color:var(--muted)}
+#item-dialog select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+#item-dialog select option{color:var(--text);background:var(--surface)}
+#item-dialog .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+#item-dialog .row label{min-width:0}
+@media (max-width:480px){#item-dialog .row{grid-template-columns:1fr}}
+#item-dialog .dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:6px;padding-top:18px;border-top:1px solid var(--line)}
+#item-dialog .btn{padding:10px 20px;border:1px solid transparent;border-radius:8px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer}
+#item-dialog .btn-cancel{background:var(--surface);border-color:var(--line);color:var(--text)}
+#item-dialog .btn-cancel:hover{background:var(--bg)}
+#item-dialog .btn-edit{background:var(--accent);color:#fff}
+#item-dialog .btn-edit:hover{background:var(--accent-hover)}
+#item-dialog .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Expiration column */
+.items-page .exp-expired{color:var(--danger);font-weight:500}
+.items-page .exp-soon{color:var(--warn);font-weight:500}
+.items-page .exp-none{color:var(--muted)}
+
+/* Low stock filter button */
+.items-page .btn-low{background:var(--surface);border-color:var(--line);color:#8A5A0B}
+.items-page .btn-low:hover{background:#FEF3C7}
+.items-page .btn-low.on{background:#FEF3C7;border-color:#F0D58A;color:#8A5A0B;font-weight:600}
