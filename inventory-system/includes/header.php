@@ -4,8 +4,15 @@
 //   $pageTitle = 'Items';                 (text for the browser tab)
 //   $pageCss   = ['CSS/table.css'];       (optional: extra CSS for this page)
 $pageTitle = $pageTitle ?? 'Inventory Management System';
-
 $pageCss   = $pageCss ?? [];
+
+// asset('CSS/x.css') adds ?v=<last edit time>, so the browser always loads your newest CSS and JS
+if (!function_exists('asset')) {
+    function asset(string $path): string {
+        $file = __DIR__ . '/../' . $path;
+        return $path . (is_file($file) ? '?v=' . filemtime($file) : '');
+    }
+}
 
 // ---------- Small stock snapshot for the sidebar ----------
 $sideTotal = $sideLow = '–';
@@ -23,9 +30,9 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= htmlspecialchars($pageTitle) ?> | IMS</title>
-  <link rel="stylesheet" href="CSS/index.css">
+  <link rel="stylesheet" href="<?= htmlspecialchars(asset('CSS/index.css')) ?>">
   <?php foreach ($pageCss as $css): ?>
-  <link rel="stylesheet" href="<?= htmlspecialchars($css) ?>">
+  <link rel="stylesheet" href="<?= htmlspecialchars(asset($css)) ?>">
   <?php endforeach; ?>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>

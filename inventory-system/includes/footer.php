@@ -10,10 +10,10 @@ $pageJs = $pageJs ?? [];
   </div><!-- /.main-content -->
 </div><!-- /.wrapper -->
 
-<script src="JS/script.js"></script>
-<script src="JS/nav.js"></script>
+<script src="<?= htmlspecialchars(asset('JS/script.js')) ?>"></script>
+<script src="<?= htmlspecialchars(asset('JS/nav.js')) ?>"></script>
 <?php foreach ($pageJs as $js): ?>
-<script src="<?= htmlspecialchars($js) ?>"></script>
+<script src="<?= htmlspecialchars(asset($js)) ?>"></script>
 <?php endforeach; ?>
 </body>
 </html>
