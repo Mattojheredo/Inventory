@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Grocery List';
+$pageTitle = 'History';
 $pageCss   = ['CSS/index.css'];
 $pageJs    = ['JS/history.js'];
 include 'includes/categories.php';

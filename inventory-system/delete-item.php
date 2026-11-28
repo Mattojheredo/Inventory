@@ -1,5 +1,6 @@
+
 <?php
-// delete-item.php: deletes ONE item, found by its id.
+// delete-item.php: deletes ONE item and records the deletion in activity history.
 include 'includes/db.php';
 
 function fail(string $msg): void {
@@ -23,14 +24,38 @@ if ($id === false || $id < 1) {
 }
 
 try {
-    $stmt = $db->prepare('DELETE FROM items WHERE id = ?');
-    $stmt->execute([$id]);
-} catch (PDOException $e) {
-    fail('Could not delete the item. The database may be locked (close DB Browser and try again).');
-}
+    $db->beginTransaction();
 
-if ($stmt->rowCount() === 0) {
-    fail('Item not found. It may have been deleted already.');
+    // Find the item before deleting it.
+    $stmt = $db->prepare('SELECT name, quantity FROM items WHERE id = ?');
+    $stmt->execute([$id]);
+    $item = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$item) {
+        $db->rollBack();
+        fail('Item not found. It may have been deleted already.');
+    }
+
+    // Record the deletion. item_id is NULL because the item will no longer exist.
+    $log = $db->prepare(
+        'INSERT INTO item_history (item_id, item_name, action, quantity)
+         VALUES (NULL, ?, ?, ?)'
+    );
+    $log->execute([$item['name'], 'deleted', $item['quantity']]);
+
+    // Delete the item.
+    $delete = $db->prepare('DELETE FROM items WHERE id = ?');
+    $delete->execute([$id]);
+
+    $db->commit();
+
+} catch (PDOException $e) {
+    if ($db->inTransaction()) {
+        $db->rollBack();
+    }
+
+    error_log('Delete item failed: ' . $e->getMessage());
+    fail('Could not delete the item. Please check the database and try again.');
 }
 
 header('Location: ' . $returnTo);
